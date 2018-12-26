@@ -23,57 +23,48 @@ import com.springmvc.service.AdminService;
 
 @Controller
 public class AdminController {
-	
+
 	@Autowired
 	private AdminService adminService;
 
 	@RequestMapping("/admin")
-	public String showAdmin(Model model, @ModelAttribute("resultado")String resultado) {
-		
+	public String showAdmin(Model model, @ModelAttribute("resultado") String resultado) {
+
 		List<Admin> admins = adminService.findAll();
-		
+
 		Admin admin = new Admin();
 		model.addAttribute("admin", admin);
 		model.addAttribute("resultado", resultado);
-		model.addAttribute("admins", admins);			
-		
+		model.addAttribute("admins", admins);
+
 		return "admin";
 	}
-	
-	@RequestMapping(value="/admin/save", method=RequestMethod.POST)
-	public String handleAdmin(@ModelAttribute("admin") Admin adminForm, Model model,
-			RedirectAttributes ra) {
-		
-		if (adminService.saveOrUpdate(adminForm)) {
-			ra.addAttribute("resultado", "Cambios realizados con éxito");			
-		} else {
-			ra.addAttribute("resultado", "Error al realizar los cambios");						
-		}		
-		
+
+	@RequestMapping(value = "/admin/save", method = RequestMethod.POST)
+	public String handleAdmin(@ModelAttribute("admin") Admin adminForm, Model model, RedirectAttributes ra) {
+
+		adminService.saveOrUpdate(adminForm);
+		ra.addAttribute("resultado", "Cambios realizados con éxito");
+
 		return "redirect:/admin";
 	}
-	
+
 	@RequestMapping("/admin/{idAd}/update")
-	public String showUpdate(Model model, @PathVariable("idAd")int id) {
-		
+	public String showUpdate(Model model, @PathVariable("idAd") int id) {
+
 		Admin admin = adminService.findById(id);
 		model.addAttribute("admin", admin);
-		
+
 		return "admin";
 	}
 
 	@RequestMapping("/admin/{idAd}/delete")
-	public String delete(@PathVariable("idAd")int id, RedirectAttributes ra) {
-		
-		if (adminService.delete(id)) {
-			ra.addAttribute("resultado", "Cambios realizados con éxito");
-		} else {
-			ra.addAttribute("resultado", "Error al elimiar");
-		}
-		
-		
+	public String delete(@PathVariable("idAd") int id, RedirectAttributes ra) {
+
+		adminService.delete(id);
+		ra.addAttribute("resultado", "Cambios realizados con éxito");
+
 		return "redirect:/admin";
 	}
-	
-	
+
 }

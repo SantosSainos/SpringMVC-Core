@@ -12,7 +12,7 @@ import com.springmvc.pojo.Admin;
  */
 public interface AdminDao {
 	
-	public boolean save(Admin admin);
+	public void save(Admin admin);
 	
 	public List<Admin> findAll();
 	
@@ -20,9 +20,9 @@ public interface AdminDao {
 	
 	public List<Admin> findByNombre(String nombre);
 	
-	public boolean update(Admin admin);
+	public void update(Admin admin);
 	
-	public boolean delete(int idAd);
+	public void delete(int idAd);
 	
 	public int[] saveAll(List<Admin> admins);
 }

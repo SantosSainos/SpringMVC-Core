@@ -27,73 +27,48 @@ import com.springmvc.pojo.AdminRowMapper;
  */
 @Component("adminDao")
 public class AdminDaoImpl implements AdminDao{
-	
-	private NamedParameterJdbcTemplate jdbcTemplate;
-	
-	@Autowired
-	private void SetDataSource(DataSource dataSource) {
-		this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-	}
 
 	@Override
-	public boolean save(Admin admin) {
-//		MapSqlParameterSource paramMap = new MapSqlParameterSource();
-//		paramMap.addValue("nombre", admin.getNombre());
-//		paramMap.addValue("cargo", admin.getCargo());
-//		paramMap.addValue("fechaCreacion", admin.getFechaCreacion());
+	public void save(Admin admin) {
+		// TODO Auto-generated method stub
 		
-		BeanPropertySqlParameterSource paramMap = new BeanPropertySqlParameterSource(admin);
-		
-		return jdbcTemplate.
-				update("insert into Admin (nombre, cargo, fechaCreacion) values (:nombre, :cargo, :fechaCreacion)", paramMap) == 1;
 	}
 
 	@Override
 	public List<Admin> findAll() {
-		return jdbcTemplate.query("select * from admin", new AdminRowMapper());
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public Admin findById(int id) {
-//		return (Admin) jdbcTemplate.query("select * from admin where idAd = :idAd", 
-//				new MapSqlParameterSource("idAd", id), 
-//				new AdminRowMapper());
-		
-		return jdbcTemplate.queryForObject("select * from admin where idAd = :idAd", 
-				new MapSqlParameterSource("idAd", id), 
-				new AdminRowMapper());
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<Admin> findByNombre(String nombre) {
-		return jdbcTemplate.query("select * from admin where nombre like :nombre",
-				new MapSqlParameterSource("nombre", "%" + nombre + "%"),
-				new AdminRowMapper());
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public boolean update(Admin admin) {
-		return jdbcTemplate.update("update admin "
-				+ "set nombre=:nombre, "
-				+ "cargo=:cargo, "
-				+ "fechaCreacion=:fechaCreacion "
-				+ "where idAd=:idAd",
-				new BeanPropertySqlParameterSource(admin)) == 1;
+	public void update(Admin admin) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public boolean delete(int idAd) {
-		return jdbcTemplate.update("delete from admin where idAd = :idAd",
-				new MapSqlParameterSource("idAd", idAd)) ==  1;
+	public void delete(int idAd) {
+		// TODO Auto-generated method stub
+		
 	}
-	
-	@Transactional
+
 	@Override
 	public int[] saveAll(List<Admin> admins) {
-		SqlParameterSource[] batchArgs = SqlParameterSourceUtils.createBatch(admins.toArray());
-		
-		return jdbcTemplate.batchUpdate("insert into Admin (idAd, nombre, cargo, fechaCreacion) values (:idAd, :nombre, :cargo, :fechaCreacion)", 
-				batchArgs);
+		// TODO Auto-generated method stub
+		return null;
 	}
-
+	
+	
 }
