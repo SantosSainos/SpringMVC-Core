@@ -73,10 +73,10 @@ public class AdminDaoImpl implements AdminDao{
 
 	@Override
 	public boolean update(Admin admin) {
-		return jdbcTemplate.update("update admin"
-				+ "set nombre:nombre,"
-				+ "cargo=:cargo,"
-				+ "fechaCreacion=:fechaCreacion"
+		return jdbcTemplate.update("update admin "
+				+ "set nombre=:nombre, "
+				+ "cargo=:cargo, "
+				+ "fechaCreacion=:fechaCreacion "
 				+ "where idAd=:idAd",
 				new BeanPropertySqlParameterSource(admin)) == 1;
 	}
