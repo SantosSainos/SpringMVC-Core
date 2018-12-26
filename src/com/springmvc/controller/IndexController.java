@@ -1,6 +1,7 @@
 package com.springmvc.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -18,8 +19,9 @@ public class IndexController {
 		return "index";
 	}
 
-	@RequestMapping("/")
+	@RequestMapping("/about")
 	public String showAbout() {
 		return "about";
 	}
+
 }

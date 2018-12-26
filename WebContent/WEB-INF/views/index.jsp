@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Hello world</h1>
+	<h1>Hello world --> Index</h1>
+	
+	<a href= '<c:url value="/about"/>'>A cerca de</a><br/>
+	<a href= '<c:url value="/admin"/>'>Gestionar administradores</a>
+	<br/>
+	
+	<c:out value="${adminForm}"></c:out> <br/>
+	
 </body>
 </html>
